@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quack index{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('edited') %}
+        <div class="container m-4 alert alert-warning">
+            <h1>{{ message }}</h1>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('deleted') %}
+        <div class="container m-4 alert alert-danger">
+            <h1>{{ message }}</h1>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('created') %}
+        <div class="container m-4 alert alert-success">
+            <h1>{{ message }}</h1>
+        </div>
+    {% endfor %}
+
+    {#    {% for message in app.flashes('login') %}#}
+    {#        <div class="container m-4 alert alert-success">#}
+    {#            <h1>{{ message }}</h1>#}
+    {#        </div>#}
+    {#    {% endfor %}#}
+
+    {#    {% for message in app.flashes('logout') %}#}
+    {#        <div class="container m-4 alert alert-primary">#}
+    {#            <h1>{{ message }}</h1>#}
+    {#        </div>#}
+    {#    {% endfor %}#}
+
+    {% for quack in quacks %}
+        <div class="card bg-secondary border-success w-75 mx-auto my-4 ">
+
+            <div class="card-title m-2">
+                <p>Message ID : {{ quack.id }}</p>
+            </div>
+            <div class="card-text my-4 mx-2">
+                <h5>Content : {{ quack.content }}</h5>
+            </div>
+            <div class="mx-2">Created at : {{ quack.createdAt ? quack.createdAt|date('Y-m-d:H:i:s') : '' }}</div>
+            <div class="my-4 mx-2">
+                <a class="btn btn-info mr-2" href="{{ path('quack_show', {'id': quack.id}) }}">Show</a>
+                <a class="btn btn-warning" href="{{ path('quack_edit', {'id': quack.id}) }}">Edit</a>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="border-danger card">No records found...</div>
+
+    {% endfor %}
+
+
+{% endblock %}

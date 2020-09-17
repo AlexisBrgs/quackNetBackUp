@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="card bg-secondary border-danger w-75 mx-auto my-4">
+        <h1 class="m-2">What the duck is that quackversation ? </h1>
+    </div>
+
+<div class="card bg-secondary border-success w-75 mx-auto my-4 ">
+    <p class="m-2">{{ quack.id }}</p>
+
+                <div class="card-title card-body m-2">
+                    <h1>{{ quack.content }}</h1>
+                </div>
+                <div class="mt-4 mx-2">
+                    <p class="my-2">Created at</p>
+                    <p>{{ quack.createdAt ? quack.createdAt|date('Y-m-d:H:i:s') : '' }}</p>
+                </div>
+                <div class="mb-4 mx-2">
+                    <a class="btn btn-info" href="{{ path('quack_index') }}">Back to list</a>
+                    <a class="btn btn-warning" href="{{ path('quack_edit', {'id': quack.id}) }}">Edit</a>
+                   {{ include('quack/_delete_form.html.twig') }}
+                </div>
+</div>
+
+{% endblock %}

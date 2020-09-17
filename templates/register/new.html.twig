@@ -10,9 +10,9 @@
         {{ form_widget(form) }}
     </div>
 <div>
+    <a class="m-4 btn btn-info" href="{{ path('quack_index') }}">Back to list</a>
     <button class="m-4 btn btn-success">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
-    <a class="my-4 btn btn-info" href="{{ path('user_index') }}">Back to list</a>
 </div>
 </div>
 

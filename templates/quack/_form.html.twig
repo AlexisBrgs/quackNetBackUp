@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    <div class="card-title m-2">
+        <h1 class="m-2"> Edit your quack content : </h1>
+    </div>
+    <div class="my-4 mx-2">
+    {{ form_widget(form) }}
+    </div>
+    <button class="btn btn-success mx-2">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

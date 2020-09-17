@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Duck index{% endblock %}
+
+{% block body %}
+
+    <div class="card bg-secondary border-success w-75 mx-auto my-4">
+        <h1 class="m-2">Who the duck are you ? </h1>
+    </div>
+
+    <div class="card bg-secondary border-success w-75 mx-auto my-4">
+        <div class="row card-body justify-content-between mx-2">
+            <div class="col-4 ">
+                <p>Duckname : <strong>{{ user.duckName }}</strong></p>
+                <p>Lastname : <strong>{{ user.lastName }}</strong></p>
+                <p>Firstname : <strong>{{ user.firstname }}</strong></p>
+                <p>Contact mail : <strong>{{ user.email }}</strong></p>
+                <a class="mt-2 btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}">Edit your duck infos</a>
+            </div>
+        <div class="col-4">
+            <img alt='profile picture of {{ user.duckName }}' height="200" src="{{ user.img }}">
+        </div>
+        </div>
+
+        <div class="mb-4 mx-4">
+
+        </div>
+    </div>
+
+
+{% endblock %}
