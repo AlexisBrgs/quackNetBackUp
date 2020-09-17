@@ -3,13 +3,22 @@
 namespace App\Entity;
 
 use App\Repository\QuackRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=QuackRepository::class)
  */
 class Quack
 {
+
+    public function __construct()
+    {
+        $this->created_at = new DateTime();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -19,13 +28,15 @@ class Quack
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=5, max=2000)
      */
     private $content;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
+
 
     public function getId(): ?int
     {
@@ -44,15 +55,13 @@ class Quack
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(): void
     {
-        $this->created_at = $created_at;
-
-        return $this;
+        $this->created_at = new DateTime();
     }
 }

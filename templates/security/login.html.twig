@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+
+    <div class="m-4 mx-4 card border-success">
+        <form method="post">
+            <h1 class="h3 m-4 font-weight-normal">Please sign in</h1>
+            <div class="p-4">
+                <label for="inputEmail" class="">Email or Duckname</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="mb-2 form-control"
+                       placeholder="Email" required autofocus>
+            </div>
+            <div class="p-4">
+                <label for="inputPassword" class="">Password</label>
+                <input type="password" name="password" id="inputPassword" class="mb-4 form-control"
+                       placeholder="Password" required>
+
+            </div>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+            <div class="p-4">
+                <button class="w-100 btn btn-outline-success" type="submit">
+                    Sign in
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="m-4 mx-4 card border-warning">
+        <h1 class="h3 m-4 font-weight-normal">You are not a duck ? If you don't give a duck, please register</h1>
+        <a class="m-4 btn-outline-warning btn" href="{{ path('register') }}">Register</a>
+    </div>
+
+{% endblock %}

@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+
+<header class="sticky-top bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container">
+            <a class="m-0 p-0 navbar-brand" href="#">
+                <img src="https://oldschool.runescape.wiki/images/3/38/Duck.png"
+                     alt="logo QuackNet" width="175" height="80">
+            </a>
+            <button class="navbar-toggler border-success" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item m-2">
+                        <a class="font-weight-bold" href="{{ path('quack_index') }}">All quacks</a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a class="font-weight-bold" href="{{ path('quack_new') }}">Create a quack </a>
+                    </li>
+                </ul>
+                {% if(is_granted('ROLE_USER')) %}
+                    <div class="nav-item">
+                            <h3 class="m-2 text-success font-weight-bold">{{ app.user.duckName }}</h3>
+                    </div>
+                <div class="nav-item">
+                            <a href="{{ path('user_show',{'id':app.user.id}) }}" class="m-0 p-0">
+                                <img class="card border-success" height="80" src="{{ app.user.img }}" alt="image of {{ app.user.duckName }}"></a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{{ path('app_logout') }}" class="font-weight-bold nav-link">Logout</a>
+                    </div>
+                {% else %}
+                    <div class="nav-item">
+                        <a href="{{ path('app_login') }}" class="font-weight-bold nav-link">Login</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
 </html>
