@@ -120,3 +120,11 @@ $ symfony self-update
 c:\> php symfony self-update
 ```
 
+If you’re not using the Symfony binary
+----------------------
+
+```bash
+c:\> composer create-project symfony/website-skeleton my_project_name
+
+c:\>  composer create-project symfony/skeleton my_project_name
+```
