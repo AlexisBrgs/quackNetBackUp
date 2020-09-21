@@ -9,8 +9,6 @@ D
 src/Entity/Quack.php,c\6\c60ddaae7088e7f2694a605feadd74433c49d3c0
 R
 "src/Repository/QuackRepository.php,a\1\a16803ebd1f1a93863d7c57ed5693d263a91595a
-R
-"src/DataFixtures/QuackFixtures.php,1\1\11c0b474597b097ace5ae4248bae8bac68e0d5b3
 X
 (config/packages/doctrine_migrations.yaml,5\b\5b04246036c5658cd1ec1b44d9f023b675bf48ee
 >
@@ -57,8 +55,6 @@ U
 %templates/user/_delete_form.html.twig,d\a\da91fa2f2cdc1e3525b986b5b3d4d9b9b5dd5b26
 M
 templates/user/edit.html.twig,5\f\5ffff80b6da656e78261bf85eddb09fec0c7a56c
-N
-templates/user/index.html.twig,4\3\43dc2f388a072ee1388ad42012d3bdcbc01c3a41
 D
 config/services.yaml,8\7\87042d1f46b57381244d70e7a42feeb7710727dc
 B
@@ -87,3 +83,7 @@ E
 src/Form/UserType.php,6\c\6c2442a67dda9c3193b965c65ce788acf9b5ecaf
 P
  templates/register/new.html.twig,7\1\715e1f201d56160cd2b7a3f036905dd8c371a6ef
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+M
+config/packages/doctrine.yaml,8\4\8407b4a9f249ef233d425138c0e8540c756c614a

@@ -17,7 +17,6 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         if ($this->getUser()) {
-            dump($this->getUser());
             return $this->redirectToRoute('quack_index');
         }
 

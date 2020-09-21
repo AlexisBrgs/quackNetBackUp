@@ -1,129 +1,100 @@
-Symfony Installation
+How to install this outstanding project
 =================
 
-Installing the installer
+1 / Before we start
 ------------------------
 
-This step is only needed the first time you use the installer:
+First of all, you will need PHP 7.3.12. 
 
-### Linux and Mac OS X
-
-```bash
-$ sudo curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
-$ sudo chmod a+x /usr/local/bin/symfony
-```
-
-### Windows
+2 / Clone the project
+------------------------
 
 ```bash
-c:\> php -r "file_put_contents('symfony', file_get_contents('https://symfony.com/installer'));"
+$ git clone https://github.com/AlexisBrgs/quackNet.git
 ```
 
-Move the downloaded `symfony` file to your projects directory and execute
-it as follows:
+2 / Go into the directory
+------------------------
 
 ```bash
-c:\> php symfony
+$ cd quackNet
 ```
 
-If you prefer to create a global `symfony` command, execute the following:
+3 / Install composer 
+------------------------
 
 ```bash
-c:\> (echo @ECHO OFF & echo php "%~dp0symfony" %*) > symfony.bat
+$ composer install
+$ composer --version
 ```
 
-Then, move both files (`symfony` and `symfony.bat`) to any location included
-in your execution path. Now you can run the `symfony` command anywhere on your
-system.
+You should have **at least** the 1.10.1 version.
 
-Using the installer
+4 / Install npm 
 -------------------
 
-**1. Start a new project with the latest stable Symfony version**
+```bash
+$ npm install
+$ npm -v
+```
+You should have **at least** the 6.14.4 version.
 
-Execute the `new` command and provide the name of your project as the only
-argument:
+5 / Execute the new symfony commands
+-------------------
 
 ```bash
-# Linux, Mac OS X
-$ symfony new my_project
-
-# Windows
-c:\> php symfony new my_project
+$ symfony check:requirements
 ```
 
-**2. Start a new project with the latest Symfony LTS (Long Term Support) version**
+If something is missing and the configuration is not OK, you can google it or you can go fry an egg ! 
 
-Execute the `new` command and provide the name of your project as the first
-argument and `lts` as the second argument. The installer will automatically
-select the most recent LTS (*Long Term Support*) version available:
+6 / Database configuration
+-------------------
+Before we start, you will have to configure your database.
+Go to your `.env` file and set your DATABASE_URL variable like this : 
 
+`DATABASE_URL=mysql://<username>:<password>@127.0.0.1:3306/<database_name>`
+
+You can call the database like mine : `quack_db` :)
+
+
+7/ Execute some doctrine commands
+-------------------
+
+We will make three important steps here : 
+1. Create the database
 ```bash
-# Linux, Mac OS X
-$ symfony new my_project lts
-
-# Windows
-c:\> php symfony new my_project lts
+$ php bin/console d:d:c
 ```
 
-**3. Start a new project based on a specific Symfony branch**
-
-Execute the `new` command and provide the name of your project as the first
-argument and the branch number as the second argument. The installer will
-automatically select the most recent version available for the given branch:
-
+2. Create the schema of it (i.e the relations between entities
 ```bash
-# Linux, Mac OS X
-$ symfony new my_project 2.8
-
-# Windows
-c:\> php symfony new my_project 2.8
+$ php bin/console d:s:c
 ```
 
-**4. Start a new project based on a specific Symfony version**
-
-Execute the `new` command and provide the name of your project as the first
-argument and the exact Symfony version as the second argument:
-
+3. Load some fixtures, because Symfony provides a powerful tool which is "fake datas"
 ```bash
-# Linux, Mac OS X
-$ symfony new my_project 2.8.1
-
-# Windows
-c:\> php symfony new my_project 2.8.1
+$ php bin/console d:s:c
 ```
 
-**5. Install the Symfony demo application**
+Nota : You will have to user already registered with those fixtures :
 
-The Symfony Demo is a reference application developed using the official Symfony
-Best Practices:
+A First user : `toto@toto.com` with the password : `toto`
+<br> A second user : `tata@toto.com` with the password : `tata`
 
-```bash
-# Linux, Mac OS X
-$ symfony demo
+We will test this soon, be patient for god's sake ! 
 
-# Windows
-c:\> php symfony demo
-```
 
-Updating the installer
+8 / Last step
 ----------------------
 
-New versions of the Symfony Installer are released regularly. To update your
-installer version, execute the following command:
+The final step is to start our server, with this useful symfony command
 
 ```bash
-# Linux, Mac OS X
-$ symfony self-update
-
-# Windows
-c:\> php symfony self-update
+$ symfony server:start
 ```
 
-If you’re not using the Symfony binary
-----------------------
+Now, you can have your project at `127.0.0.1:8000` and access to your database at `127.0.0.1/phpmyadmin/`
 
-```bash
-$ composer create-project symfony/website-skeleton my_project_name
-$ composer create-project symfony/skeleton my_project_name
-```
+
+**ENJOY, QUACK QUACK !**

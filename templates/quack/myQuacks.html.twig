@@ -21,18 +21,6 @@
         </div>
     {% endfor %}
 
-    {#    {% for message in app.flashes('login') %}#}
-    {#        <div class="container m-4 alert alert-success">#}
-    {#            <h1>{{ message }}</h1>#}
-    {#        </div>#}
-    {#    {% endfor %}#}
-
-    {#    {% for message in app.flashes('logout') %}#}
-    {#        <div class="container m-4 alert alert-primary">#}
-    {#            <h1>{{ message }}</h1>#}
-    {#        </div>#}
-    {#    {% endfor %}#}
-
     {% for quack in quacks %}
         <div class="card bg-secondary border-success w-75 mx-auto my-4 ">
 
@@ -44,14 +32,13 @@
             </div>
             <div class="m-2 mx-4">Created on {{ quack.createdAt|date('d/m/Y') }} at {{ quack.createdAt|date('H:i:s') }}</div>
             <div class="m-4">
-                <a class="btn btn-info mr-2" href="{{ path('quack_show', {'id': quack.id}) }}">Show More...</a>
-
-{#                <a class="btn btn-warning" href="{{ path('quack_edit', {'id': quack.id}) }}">Edit</a>#}
+                <a class="btn btn-info mr-2" href="{{ path('quack_show', {'id': quack.id}) }}">Show</a>
+                <a class="btn btn-warning" href="{{ path('quack_edit', {'id': quack.id}) }}">Edit</a>
             </div>
         </div>
 
     {% else %}
-        <div class="border-danger card w-75 mx-auto my-4">No records found...</div>
+        <div class="card bg-secondary border-danger w-75 mx-auto my-4">No records found...</div>
     {% endfor %}
 
 

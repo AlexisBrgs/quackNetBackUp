@@ -3,12 +3,14 @@
 namespace App\Controller\Quack;
 
 use App\Entity\Quack;
+use App\Entity\User;
 use App\Form\QuackType;
 use App\Repository\QuackRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -18,11 +20,17 @@ class QuackController extends AbstractController
 {
     protected $quackRepository;
     protected $em;
+    protected $session;
 
-    public function __construct(QuackRepository $quackRepository, EntityManagerInterface $em)
+    public function __construct(
+        QuackRepository $quackRepository,
+        EntityManagerInterface $em,
+        SessionInterface $session
+    )
     {
         $this->quackRepository = $quackRepository;
         $this->em = $em;
+        $this->session = $session;
     }
 
 
@@ -37,15 +45,27 @@ class QuackController extends AbstractController
     }
 
     /**
+     * @Route("/myQuacks", name="my_quacks", methods={"GET"})
+     */
+    public function myQuacks(): Response
+    {
+
+        return $this->render('quack/myQuacks.html.twig', [
+            'quacks' => $this->getUser()->getQuacks()
+        ]);
+    }
+
+    /**
      * @Route("/new", name="quack_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $quack = new Quack();
-        $form = $this->createForm(QuackType::class, $quack);
-        $form->handleRequest($request);
+
+        $form=$this->createForm(QuackType::class, $quack)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $quack->setUser($this->getUser());
             $this->em->persist($quack);
             $this->em->flush();
             $this->addFlash('created', 'Your quack has been added !');
@@ -74,6 +94,7 @@ class QuackController extends AbstractController
      */
     public function edit(Request $request, Quack $quack): Response
     {
+
         $form = $this->createForm(QuackType::class, $quack);
         $form->handleRequest($request);
 
